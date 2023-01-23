@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerInvetory : MonoBehaviour
 {
+    public IShootable[] shootables;
     // Start is called before the first frame update
     void Start()
     {
