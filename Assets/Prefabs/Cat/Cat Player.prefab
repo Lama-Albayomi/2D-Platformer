@@ -110,7 +110,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1647613480, guid: f6aae9802e1da4908854ed98a46dcfa2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -134,6 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a83c9cbcf6b14171b58be1ba624c655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullets:
+  - {fileID: 11400000, guid: 2db1c688fb9409145ab8f66724b90186, type: 2}
+  - {fileID: 11400000, guid: 3eb5fd0fdafe1d641b6cff54d893aa28, type: 2}
 --- !u!114 &4020883996592849920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 6
-  jumpForce: 6
+  jumpForce: 5
   deathState: 0
   projectile: {fileID: 0}
   shootingPoint: {fileID: 1685001763339373932}

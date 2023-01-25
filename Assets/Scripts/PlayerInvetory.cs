@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class PlayerInvetory : MonoBehaviour
 {
-    public IShootable[] shootables;
-    // Start is called before the first frame update
-    void Start()
+    public Bullet[] bullets;
+    public static PlayerInvetory instance;
+   
+    void Awake()
+
     {
-        
+    
+        instance = this; 
+    }
+    // update canves manager to bulet amount
+    public void UpdateCanvas()
+    {
+        for (int i = 1; i < bullets.Length; i++)
+        {
+            CanvasManager.instance.texts[i].text = "X " + bullets[i].amount.ToString();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateCanvas();
         
     }
 }

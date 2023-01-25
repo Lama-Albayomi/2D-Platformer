@@ -22,13 +22,14 @@ namespace Platformer
         private Rigidbody2D rigidbody;
         private Animator animator;
         private GameManager gameManager;
+        private int bulletIndex = 0;
         
 
         void Start()
         {
             rigidbody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            projectile = PlayerInvetory.instance.bullets[bulletIndex].bullet;
         }
 
         private void FixedUpdate()
@@ -70,6 +71,16 @@ namespace Platformer
                 GameObject projectileInstance = Instantiate(projectile, shootingPoint.position, Quaternion.identity);
                 // set direction of projectile to the player direction 
                 projectileInstance.GetComponent<Projectile>().direction.x = facingRight ? 1 : -1;
+
+            }
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                bulletIndex++;
+                if (bulletIndex >= PlayerInvetory.instance.bullets.Length)
+                {
+                    bulletIndex = 0;
+                }
+                projectile = PlayerInvetory.instance.bullets[bulletIndex].bullet;
 
             }
         }

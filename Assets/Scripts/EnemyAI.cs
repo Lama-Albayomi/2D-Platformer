@@ -10,29 +10,38 @@ namespace Platformer
         public LayerMask ground;
         public Transform chackPoint; // and shoot point 
         public GameObject projectile;
+        public bool isIdel;
 
         private Rigidbody2D rigidbody; 
         public Collider2D triggerCollider;
         public Vector2 direction;
         bool pLayerisNear;
+        private Animator animator;
         
         void Start()
         {
             rigidbody = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
             
             InvokeRepeating("Shoot", 0f, 0.5f);
+            if (isIdel){
+                
+            animator.SetInteger("State", 3);
+            }
         }
 
         void Update()
         {
             
-            rigidbody.velocity = new Vector2(moveSpeed, rigidbody.velocity.y);
             
             CheckIfPlayerIsInfront();
         }
 
         void FixedUpdate()
         {
+            if (isIdel) return;
+
+            rigidbody.velocity = new Vector2(moveSpeed, rigidbody.velocity.y);
             if(IsNotTouchingGround()|| IsTouchingWall() )
             {
                 Flip();
@@ -41,6 +50,8 @@ namespace Platformer
         }
         private void Shoot(){
             if (!pLayerisNear)return;
+            // set animator state to 1 
+            animator.SetInteger("State", 1);
             // create projectile 
             GameObject bullet = Instantiate(projectile, chackPoint.position, chackPoint.rotation);
             // set direction of projectile

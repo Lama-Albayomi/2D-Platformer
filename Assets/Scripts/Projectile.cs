@@ -20,7 +20,8 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(direction * Time.deltaTime * moveSpeed);
+        // move with rigidbody
+        body.velocity = direction * moveSpeed;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f,ground);
         Debug.DrawRay(transform.position, direction, Color.red);
         if (hit.collider != null)

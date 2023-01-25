@@ -268,9 +268,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8506756001627868433}
   - component: {fileID: 8506756001627868438}
-  - component: {fileID: 8506756001627868439}
   - component: {fileID: 8506756001627868432}
   - component: {fileID: 8506756001627868435}
+  - component: {fileID: 2226240253139974635}
   m_Layer: 0
   m_Name: 'Normal Bullet '
   m_TagString: Projectile
@@ -347,23 +347,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8506756001627868439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8506756001627868436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0873e511bde60ca4f903ad14d2a6d66c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 8
-  direction: {x: 0, y: 0}
-  ground:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!50 &8506756001627868432
 Rigidbody2D:
   serializedVersion: 4
@@ -379,7 +362,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 842564184d1f4d7409d983cba35403b8, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -395,9 +378,22 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.295
+  m_Radius: 0.1
+--- !u!114 &2226240253139974635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8506756001627868436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d76304f0b1293499d69250d11952e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 11400000, guid: 2db1c688fb9409145ab8f66724b90186, type: 2}
