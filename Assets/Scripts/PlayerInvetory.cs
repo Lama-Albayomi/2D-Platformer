@@ -12,6 +12,10 @@ public class PlayerInvetory : MonoBehaviour
     {
     
         instance = this; 
+        for (int i = 1; i < bullets.Length; i++)
+        {
+            bullets[i].amount=0;
+        }
     }
     // update canves manager to bulet amount
     public void UpdateCanvas()

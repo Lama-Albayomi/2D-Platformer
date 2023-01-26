@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public interface IShootable {
-    int amount { get; set;}
-    void OnUpdate ();
+    
+    
+    void OnUpdate (Vector2 direction);
     void OnHit ();
 } 
 

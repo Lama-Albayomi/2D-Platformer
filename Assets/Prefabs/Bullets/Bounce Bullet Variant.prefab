@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2226240253139974635, guid: 9af08835451124cec83daea84799ab42, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 11400000, guid: 3eb5fd0fdafe1d641b6cff54d893aa28, type: 2}
     - target: {fileID: 3688780652973786705, guid: 9af08835451124cec83daea84799ab42, type: 3}
       propertyPath: m_Color.b
       value: 0.6341457
@@ -151,16 +155,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
---- !u!114 &6718651811861387139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8433291381700793112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77d76304f0b1293499d69250d11952e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 11400000, guid: 3eb5fd0fdafe1d641b6cff54d893aa28, type: 2}

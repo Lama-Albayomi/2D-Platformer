@@ -17,6 +17,7 @@ namespace Platformer
         public Vector2 direction;
         bool pLayerisNear;
         private Animator animator;
+        bool Death;
         
         void Start()
         {
@@ -24,24 +25,29 @@ namespace Platformer
             animator = GetComponent<Animator>();
             
             InvokeRepeating("Shoot", 0f, 0.5f);
+
+
             if (isIdel){
                 
-            animator.SetInteger("State", 3);
+                animator.SetInteger("State", 3);
+            }
+            else{
+                animator.SetInteger("State", 0);
             }
         }
 
         void Update()
         {
-            
-            
-            CheckIfPlayerIsInfront();
         }
 
         void FixedUpdate()
         {
+            CheckIfPlayerIsInfront();
+            
             if (isIdel) return;
 
             rigidbody.velocity = new Vector2(moveSpeed, rigidbody.velocity.y);
+
             if(IsNotTouchingGround()|| IsTouchingWall() )
             {
                 Flip();
@@ -49,13 +55,13 @@ namespace Platformer
             
         }
         private void Shoot(){
-            if (!pLayerisNear)return;
+            if (!pLayerisNear&&!Death)return;
             // set animator state to 1 
             animator.SetInteger("State", 1);
             // create projectile 
             GameObject bullet = Instantiate(projectile, chackPoint.position, chackPoint.rotation);
             // set direction of projectile
-            bullet.GetComponent<Projectile>().direction = direction;
+            bullet.GetComponent<EnemyProjectile>().direction = direction;
         }
         private void CheckIfPlayerIsInfront()
         {
@@ -63,6 +69,8 @@ namespace Platformer
             RaycastHit2D raycastHit = Physics2D.Raycast(chackPoint.position, direction, 5f);
             // draw raycast 
             Debug.DrawRay(chackPoint.position, direction * 5f, Color.blue);
+            if (raycastHit.collider == null ) return;
+
             if (raycastHit.collider.tag== "Player" )
             {
                 pLayerisNear = true;
@@ -101,6 +109,28 @@ namespace Platformer
                 return false;
             }
 
+        }
+        // corotin funtion 
+        IEnumerator Die(){
+            yield return new WaitForSeconds(0.5f);
+            Destroy(gameObject);
+            // restart secene
+        }
+        void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Projectile"))
+            {
+                
+                animator.SetInteger("State", 2);
+                Death= true;
+                Destroy(other.gameObject);
+                // disable collider
+                StartCoroutine(Die());
+                // destroy enemy
+                // destroy projectile
+                //Destroy(gameObject);
+            
+            }
         }
         
         private void Flip()

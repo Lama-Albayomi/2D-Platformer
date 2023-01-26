@@ -21,7 +21,6 @@ namespace Platformer
 
         private Rigidbody2D rigidbody;
         private Animator animator;
-        private GameManager gameManager;
         private int bulletIndex = 0;
         
 
@@ -38,7 +37,7 @@ namespace Platformer
         }
 
         void Update(){
-            if (Input.GetButton("Horizontal")) 
+            if (Input.GetButton("Horizontal") && !deathState) 
             {
                 moveInput = Input.GetAxis("Horizontal");
                 Vector3 direction = transform.right * moveInput;
@@ -48,6 +47,7 @@ namespace Platformer
             else
             {
                 if (isGrounded) animator.SetInteger("playerState", 0); // Turn on idle animation
+                if (deathState) animator.SetInteger("playerState", 3); // Turn on death animation
             }
             if(Input.GetKeyDown(KeyCode.Space) && isGrounded )
             {
@@ -67,6 +67,10 @@ namespace Platformer
             // if input z Shoot project Tiles
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
+                if (PlayerInvetory.instance.bullets[bulletIndex].amount<=0) return;
+
+                PlayerInvetory.instance.bullets[bulletIndex].amount-=1;
+                
                 // create projectile
                 GameObject projectileInstance = Instantiate(projectile, shootingPoint.position, Quaternion.identity);
                 // set direction of projectile to the player direction 
@@ -81,6 +85,7 @@ namespace Platformer
                     bulletIndex = 0;
                 }
                 projectile = PlayerInvetory.instance.bullets[bulletIndex].bullet;
+                CanvasManager.instance.selected(bulletIndex);
 
             }
         }
@@ -96,10 +101,18 @@ namespace Platformer
             Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.transform.position, 0.2f);
             isGrounded = colliders.Length > 1;
         }
+        // corotin funtion 
+        IEnumerator Death(){
+            yield return new WaitForSeconds(0.5f);
+            // restart secene
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
 
         private void OnCollisionEnter2D(Collision2D other){
             if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Spike" || other.gameObject.tag == "EnemyProjecttile" ){
-                deathState = true; // Say to GameManager that player is dead
+                deathState = true; // Say to GameManager that player is dead\
+                StartCoroutine(Death());
+                
             }
             else{
                 deathState = false;
@@ -107,11 +120,11 @@ namespace Platformer
         }
         private void OnTriggerEnter2D(Collider2D other){
             if (other.gameObject.tag == "Coin"){
-                gameManager.coinsCounter += 1;
+                //gameManager.coinsCounter += 1;
                 Destroy(other.gameObject);
             }
             else if (other.gameObject.tag == "EndPoint"){
-                gameManager.Win();
+                //gameManager.Win();
             }
         }
     }

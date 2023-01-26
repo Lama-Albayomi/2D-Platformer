@@ -89,7 +89,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -186,6 +186,7 @@ MonoBehaviour:
     m_Bits: 64
   chackPoint: {fileID: 6796715679863360345}
   projectile: {fileID: 9008735154789471978, guid: db5483aad29000047a973121d6010a28, type: 3}
+  isIdel: 0
   triggerCollider: {fileID: 7593513948102292793}
   direction: {x: 0, y: 0}
 --- !u!95 &1169260315508060274

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6967097026029617396}
   - component: {fileID: 6967097026029617399}
   - component: {fileID: 86136051642915492}
+  - component: {fileID: 8806431892534046395}
   m_Layer: 0
   m_Name: Normal Bullet Projecttile
   m_TagString: Projectile
@@ -136,8 +137,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0873e511bde60ca4f903ad14d2a6d66c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
   direction: {x: 0, y: 0}
+--- !u!114 &8806431892534046395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6967097026029617392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50de688cc1bb441c095c25b7e00d1444, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 4
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
